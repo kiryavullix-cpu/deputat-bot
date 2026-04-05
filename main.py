@@ -541,7 +541,7 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
             cd = DATA['active_cd']
             exp = cd['expires_at']
             await update.message.reply_text(
-                f"⏰ КД активен до <b>{exp.strftime('%H:%M')}</b> (минута {cd['minute']})\n"
+                f"⏰ КД активен до </b> (минута {cd['minute']})\n"
                 f"Поставил: <b>{cd['nick']}</b>",
                 parse_mode=ParseMode.HTML
             )
