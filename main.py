@@ -536,18 +536,18 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if txt == '💰 Баланс':
         await update.message.reply_text(f"💼 Баланс: <b>{format_balance(user['balance'])} ₽</b>", parse_mode=ParseMode.HTML)
 
-    elif txt == '⏰ КД':
+elif txt == '⏰ КД':
         if is_cd_active():
             cd = DATA['active_cd']
             exp = cd['expires_at']
             await update.message.reply_text(
-                f"⏰ КД активен до </b> (минута {cd['minute']})\n"
+                f"⏰ КД активен до <b>{exp.strftime('%M')} мин.</b> (минута {cd['minute']})\n"
                 f"Поставил: <b>{cd['nick']}</b>",
                 parse_mode=ParseMode.HTML
             )
         else:
             await update.message.reply_text("✅ КД не активен.")
-
+            
     elif txt == '📊 История строек':
         u_reps = [r for r in DATA['reports'].values() if r['user_id'] == uid][-5:]
         if not u_reps:
