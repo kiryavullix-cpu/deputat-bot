@@ -540,9 +540,16 @@ elif txt == '⏰ КД':
         if is_cd_active():
             cd = DATA['active_cd']
             exp = cd['expires_at']
-            # Выводим только минуты из объекта времени
+            
+            # Определяем минуты независимо от того, объект это или строка
+            if hasattr(exp, 'minute'):
+                display_min = exp.minute
+            else:
+                # Если в cd['minute'] уже лежит нужное число, берем его напрямую
+                display_min = cd.get('minute', '??')
+
             await update.message.reply_text(
-                f"⏰ КД активен до <b>{exp.minute}</b> мин.\n"
+                f"⏰ КД активен до <b>{display_min}</b> мин.\n"
                 f"Поставил: <b>{cd['nick']}</b>",
                 parse_mode=ParseMode.HTML
             )
