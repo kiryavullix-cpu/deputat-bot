@@ -540,8 +540,9 @@ elif txt == '⏰ КД':
         if is_cd_active():
             cd = DATA['active_cd']
             exp = cd['expires_at']
+            # Выводим только минуты из объекта времени
             await update.message.reply_text(
-                f"⏰ КД активен до <b>{exp.strftime('%M')} мин.</b> (минута {cd['minute']})\n"
+                f"⏰ КД активен до <b>{exp.minute}</b> мин.\n"
                 f"Поставил: <b>{cd['nick']}</b>",
                 parse_mode=ParseMode.HTML
             )
