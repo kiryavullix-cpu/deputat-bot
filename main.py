@@ -34,7 +34,7 @@ OWNER_IDS   = [6693142204, 5711452887]
 DATA_FILE   = "data.json"
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
-PAYMENTS = {"high": 350_000, "medium": 200_000}
+PAYMENTS = {"high": 400_000, "medium": 200_000}
 MSK = timedelta(hours=3)
 
 # ══════════════════════════════════════════════════════════
@@ -685,7 +685,7 @@ async def on_callback(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
             ctx.user_data["st"] = None
             await q.message.edit_text(f"✅ Ник: <b>{nick}</b>", parse_mode=ParseMode.HTML)
             kb = InlineKeyboardMarkup([[
-                InlineKeyboardButton("🏗 Высокий — 350 000 ₽", callback_data="rc_high"),
+                InlineKeyboardButton("🏗 Высокий — 400 000 ₽", callback_data="rc_high"),
                 InlineKeyboardButton("🏗 Средний — 200 000 ₽", callback_data="rc_medium"),
             ]])
             await q.message.reply_text("🏗 Шаг 4/5 — класс стройки:", reply_markup=kb)
@@ -839,7 +839,7 @@ async def on_message(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
         ctx.user_data["st"] = None
         if user: user["nick"] = nick; await save_data()
         kb = InlineKeyboardMarkup([[
-            InlineKeyboardButton("🏗 Высокий — 350 000 ₽", callback_data="rc_high"),
+            InlineKeyboardButton("🏗 Высокий — 400 000 ₽", callback_data="rc_high"),
             InlineKeyboardButton("🏗 Средний — 200 000 ₽", callback_data="rc_medium"),
         ]])
         await msg.reply_text(
@@ -2217,6 +2217,7 @@ async def cmd_help(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
         "/stats — общая\n\n"
         "📢 <b>Сообщения:</b>\n"
         "/msg [текст] — всем пользователям"
+        "Created by Adilov"
         + owner_cmds,
         parse_mode=ParseMode.HTML,
     )
