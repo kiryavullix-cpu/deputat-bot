@@ -2195,6 +2195,7 @@ async def cmd_help(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
             "/on — снять техработы\n"
             "/event — создать конкурс\n"
             "/estop, /egive, /eset"
+            "Created by Adilov"
         )
 
     await update.message.reply_text(
